@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -11,15 +13,31 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $result = Student::withWhereHas('Contact',function($query){
+           $query->where('city' , '=', 'Lahore');
+        })->get();
+            
+        return $result;
     }
 
-    /**
-     * Show the form for creating a new resource.
+    
+     /* Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+      $result = Student::create([
+           'name' => 'Ali',
+           'age' => 20,
+            'gender' => 'male'
+      ]);
+      $result->contact()->create([
+          'email' => 'ali@gmail.com',
+        'phone' => '1234567890',
+        'address' => '123 Street Name',
+           'city' => 'Bahawalpur',
+
+      ]);
+      return "data added successfully";
     }
 
     /**
