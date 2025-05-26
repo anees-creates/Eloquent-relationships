@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -11,7 +12,18 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $result = Post::withWhereHas('user',function ($query) {
+            $query->where('name','=','Kashif');
+        })->get();
+        foreach ($result as $post) {
+      echo "<div style='border:1px solid red; padding:10px; margin:10px;'>"; // Missing semicolon in CSS and closing quote
+       echo '<h3>' . $post->title . '</h3>';
+      echo '<p>' . $post->description . '</p>'; // Assuming your post content column is 'body', not 'description' as per your SQL dummy data. Adjust if it's 'description'.
+         echo '<p><strong>Author:</strong> ' . $post->user->name . '</p>';
+        echo '<p><strong>Email:</strong> ' . $post->user->email . '</p>';
+        echo '</div>'; // This closes the initial <div>
+          
+        }
     }
 
     /**
