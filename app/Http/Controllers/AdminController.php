@@ -41,7 +41,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -49,7 +49,7 @@ class AdminController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**

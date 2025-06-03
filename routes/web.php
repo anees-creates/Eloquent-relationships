@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\EmployeeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,3 +19,4 @@ Route::resource('users', UserController::class);
 Route::resource('posts',PostController::class);
 Route::resource('admins', AdminController::class);
 Route::resource('roles', RoleController::class);
+Route::resource('employees', EmployeeController::class);
